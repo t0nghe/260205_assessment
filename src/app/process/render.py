@@ -4,9 +4,10 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
+from app.config import USER_AGENT
 
 def save_page_as_pdf(
-	url: str,
+	html_markup: str,
 	output_path: str | Path,
 	*,
 	wait_until: str = "networkidle",
@@ -15,7 +16,7 @@ def save_page_as_pdf(
 	"""Save a webpage as PDF using Playwright Chromium.
 	
 	Args:
-		url: The URL to render and save.
+		html_markup: The HTML content to render and save.
 		output_path: Where to save the PDF file.
 		wait_until: Event to wait for ("load", "domcontentloaded", or "networkidle").
 		timeout: Timeout in milliseconds.
@@ -29,9 +30,11 @@ def save_page_as_pdf(
 	
 	with sync_playwright() as p:
 		browser = p.chromium.launch()
-		page = browser.new_page()
-		page.goto(url, wait_until=wait_until, timeout=timeout)
+		context = browser.new_context(user_agent=USER_AGENT)
+		page = context.new_page()
+		page.set_content(html_markup, wait_until=wait_until, timeout=timeout)
 		page.pdf(path=str(output_path))
+		context.close()
 		browser.close()
 	
 	return output_path

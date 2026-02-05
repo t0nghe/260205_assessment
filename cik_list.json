@@ -1,0 +1,18 @@
+[
+    {"ticker": "AAPL", "legal_name": "Apple Inc.", "cik": "0000320193"},
+    {"ticker": "META", "legal_name": "Meta Platforms, Inc.", "cik": "0001326801"},
+    {"ticker": "GOOGL", "legal_name": "Alphabet Inc.", "cik": "0001652044"},
+    {"ticker": "AMZN", "legal_name": "Amazon.com, Inc.", "cik": "0001018724"},
+    {"ticker": "NFLX", "legal_name": "Netflix, Inc.", "cik": "0001065280"},
+    {
+        "ticker": "GS",
+        "legal_name": "Goldman Sachs Group, Inc. (200 West St, NY, NY)",
+        "cik": "0000886982"
+    },
+    {
+        "ticker": "GS",
+        "legal_name": "Goldman Sachs Group, Inc. (85 BROAD ST, NEW YORK)",
+        "cik": "0000904571"
+    }
+]
+

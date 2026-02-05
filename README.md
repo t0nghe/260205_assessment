@@ -6,6 +6,18 @@ The goal of this project is to fetch 10-K reports filed with the SEC by Apple, M
 
 The immediate goal of this task is to fetch the reports from these companies and convert them to PDFs. 
 
+## Usage
+
+Run the main script:
+```bash
+cd src && poetry run python main.py
+```
+
+Or from the project root:
+```bash
+poetry run python src/main.py
+```
+
 ## Consideration
 
 10-K reports are submitted annually. There is no need to provide the data with WebSocket. 
@@ -29,3 +41,5 @@ The immediate goal of this task is to fetch the reports from these companies and
 - There are many registered entities affiliated with Goldman Sachs. Two of them bear the name "Goldman Sachs Group, Inc.". The one at 200 West St has more filings.
     - Goldman Sachs Group, Inc.  (200 West St, NY, NY) 0000886982      
     - Goldman Sachs Group, Inc.  (85 BROAD ST, NEW YORK) 0000904571
+
+- TODO: By directly rendering the fetched HTML content, embedded media, including company logos and charts are missing.
