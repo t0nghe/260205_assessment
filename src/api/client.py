@@ -5,7 +5,7 @@ from typing import Iterable
 
 import requests
 
-from app.config import USER_AGENT, SEC_SUBMISSIONS_BASE_URL, SEC_ARCHIVES_BASE_URL
+from config import USER_AGENT, SEC_SUBMISSIONS_BASE_URL, SEC_ARCHIVES_BASE_URL
 
 
 @dataclass(frozen=True)

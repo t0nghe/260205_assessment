@@ -4,7 +4,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-from app.config import USER_AGENT
+from config import USER_AGENT
 
 def save_page_as_pdf(
 	html_markup: str,
