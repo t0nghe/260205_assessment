@@ -76,7 +76,18 @@ def fetch_10k_filings(
 	timeout: float = 30.0,
 	session: requests.Session | None = None,
 ) -> list[Filing]:
-	"""Fetch recent 10-K filings for a given CIK using the SEC submissions API."""
+	"""Fetch recent 10-K filings for a given CIK using the SEC submissions API.
+	
+	Args:
+	    cik: The Central Index Key (CIK) of the company.
+        include_amended: Whether to include amended filings (10-K/A).
+        max_results: Maximum number of filings to return. If None, returns all.
+        timeout: Request timeout in seconds.
+        session: Optional requests.Session to reuse for multiple calls.
+    
+	Returns:
+        A list of Filing objects representing the recent 10-K filings.
+    """
 	normalized_cik = _normalize_cik(cik)
 	forms = ["10-K"]
 	if include_amended:
@@ -98,4 +109,33 @@ def fetch_10k_filings(
 	if max_results is not None:
 		return filings[:max_results]
 	return filings
+
+
+def download_filing_html(
+	filing_or_url: Filing | str,
+	*,
+	timeout: float = 30.0,
+	session: requests.Session | None = None,
+) -> str:
+	"""Download the HTML/text content of a filing document.
+	
+	Args:
+		filing_or_url: A Filing object or a filing URL string.
+		timeout: Request timeout in seconds.
+		session: Optional requests.Session to reuse.
+	
+	Returns:
+		The raw content of the filing document.
+	"""
+	url = filing_or_url.filing_url if isinstance(filing_or_url, Filing) else filing_or_url
+	
+	headers = {
+		"User-Agent": USER_AGENT,
+		"Accept-Encoding": "gzip, deflate",
+	}
+	
+	client = session or requests.Session()
+	response = client.get(url, headers=headers, timeout=timeout)
+	response.raise_for_status()
+	return response.text
 
