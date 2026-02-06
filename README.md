@@ -6,7 +6,22 @@ The goal of this project is to fetch 10-K reports filed with the SEC by Apple, M
 
 ## Usage
 
-From the project root:
+1. At the project root, run the following command:
+
+(Optional) Start a new virtual environment so the dependencies do not conflict with your global setup:
+
+```bash
+pipenv shell
+```
+
+Then install dependencies from `requirements.txt` and run the entrypoint of the program `src/main.py`. 
+
+```bash
+pip install -r requirements.txt
+python src/main.py
+```
+
+2. Alternatively, if you prefer `poetry`, you can run the following commands from the project root:
 
 ```bash
 poetry install
